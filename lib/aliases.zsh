@@ -25,3 +25,5 @@ alias afind='ack-grep -il'
 alias gvim="gvim -u $HOME/.vimrc -N -U NONE"
 alias vim="vim -u $HOME/.vimrc -N -U NONE -X"
 alias g="git"
+
+alias acksed="ack -f --print0 | xargs -0 -n 1 sed -i -e"
