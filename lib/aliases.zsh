@@ -26,4 +26,10 @@ alias gvim="gvim -u $HOME/.vimrc -N -U NONE"
 alias vim="vim -u $HOME/.vimrc -N -U NONE -X"
 alias g="git"
 
+# Runs sed on all the files ack finds; useful for global search & replace
+# e.g. to replace all occurences of "foo" with "bar": acksed 's/foo/bar/g'
 alias acksed="ack -f --print0 | xargs -0 -n 1 sed -i -e"
+
+# Searches for all the files whose names match the given regex in this dir and
+# all the subdirs
+alias ackf="ack -f -g"
