@@ -32,4 +32,4 @@ alias acksed="ack -f --print0 | xargs -0 -n 1 sed -i -e"
 
 # Searches for all the files whose names match the given regex in this dir and
 # all the subdirs
-alias ackf="ack -f -g"
+alias ackf="ack -a -g"
