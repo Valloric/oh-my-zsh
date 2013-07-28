@@ -26,6 +26,7 @@ alias afind='ack-grep -il'
 alias gvim="gvim -u $HOME/.vimrc -N -U NONE"
 alias vim="vim -u $HOME/.vimrc -N -U NONE -X"
 alias g="git"
+alias v="vagrant"
 
 # Runs sed on all the files ack finds; useful for global search & replace
 # e.g. to replace all occurences of "foo" with "bar": acksed 's/foo/bar/g'
