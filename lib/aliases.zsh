@@ -38,9 +38,9 @@ alias vim="vim -u $HOME/.vimrc -N -U NONE -X"
 alias g="git"
 alias v="vagrant"
 
-# Runs sed on all the files ack finds; useful for global search & replace
+# Runs perl-as-sed on all the files ack finds; useful for global search & replace
 # e.g. to replace all occurences of "foo" with "bar": acksed 's/foo/bar/g'
-alias acksed="ack -f --print0 | xargs -0 -n 1 sed -i -e"
+alias acksed="ack -f --print0 | xargs -0 -n 1 perl -pi -E "
 
 # Searches for all the files whose names match the given regex in this dir and
 # all the subdirs
