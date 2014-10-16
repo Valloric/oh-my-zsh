@@ -10,8 +10,6 @@ alias -- -='cd -'
 alias _='sudo'
 alias please='sudo'
 
-#alias g='grep -in'
-
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]
 then
@@ -30,8 +28,6 @@ alias sl=ls # often screw this up
 alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
-
-alias afind='ack-grep -il'
 
 alias gvim="gvim -u $HOME/.vimrc -N -U NONE"
 alias vim="vim -u $HOME/.vimrc -N -U NONE -X"
