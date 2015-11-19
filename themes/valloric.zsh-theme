@@ -28,7 +28,7 @@ function git_prompt() {
 }
 
 PROMPT=$'%{$fg[yellow]%}${PWD/#$HOME/~}%{$reset_color%} $(git_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
-%{$fg[red]%}➜ %{$reset_color%} '
+%{$fg[red]%}$ %{$reset_color%}'
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
 export LSCOLORS="gxfxcxdxbxegedabagacad"
