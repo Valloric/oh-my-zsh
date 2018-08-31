@@ -14,3 +14,4 @@ alias ct="cargo test"
 alias cb="cargo build"
 alias cf="cargo fmt"
 alias cc="cargo +nightly clippy"
+alias help="tldr" # requires: cargo install tealdeer
