@@ -12,6 +12,7 @@ alias ackf="ack -a -g"
 alias ck="cargo check"
 alias ct="cargo test"
 alias cb="cargo build"
+alias cbr="cargo build --release"
 alias cf="cargo fmt"
 alias cc="cargo clippy"
 alias help="tldr" # requires: cargo install tealdeer
