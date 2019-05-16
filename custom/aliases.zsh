@@ -8,6 +8,9 @@ alias acksed="ag -g '' | tr '\n' '\0' | xargs -0 -n 1 perl -pi -E "
 # all the subdirs
 alias ackf="ack -a -g"
 
+# mercurial aliases
+alias h="hg"
+
 # rust cargo aliases
 alias ck="cargo check"
 alias ct="cargo test"
