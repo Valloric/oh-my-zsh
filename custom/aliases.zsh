@@ -9,7 +9,8 @@ alias acksed="ag -g '' | tr '\n' '\0' | xargs -0 -n 1 perl -pi -E "
 alias ackf="ack -a -g"
 
 # mercurial aliases
-alias h="hg"
+# using chg, the C wrapper around hg for faster startup
+alias h="chg"
 
 # rust cargo aliases
 alias ck="cargo check"
