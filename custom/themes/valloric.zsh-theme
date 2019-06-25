@@ -16,18 +16,24 @@ GIT_PROMPT_PREFIX="%{$fg[white]%}[%{$reset_color%}%{$fg[green]%}"
 GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "
 
 function git_prompt() {
-    local info=$(git_prompt_info)
-    if [[ "x$info" != "x" ]]; then
-      local gstatus=$(git_prompt_status)
-      if [[ "x$gstatus" != "x" ]]; then
-        echo "$GIT_PROMPT_PREFIX$(git_prompt_info) $(git_prompt_status)$GIT_PROMPT_SUFFIX"
-      else
-        echo "$GIT_PROMPT_PREFIX$(git_prompt_info)$GIT_PROMPT_SUFFIX"
-      fi
+  local info=$(git_prompt_info)
+  if [[ "x$info" != "x" ]]; then
+    local gstatus=$(git_prompt_status)
+    if [[ "x$gstatus" != "x" ]]; then
+      echo "$GIT_PROMPT_PREFIX$(git_prompt_info) $(git_prompt_status)$GIT_PROMPT_SUFFIX"
+    else
+      echo "$GIT_PROMPT_PREFIX$(git_prompt_info)$GIT_PROMPT_SUFFIX"
     fi
+  fi
 }
 
-PROMPT=$'%{$fg[yellow]%}${PWD/#$HOME/~}%{$reset_color%} $(git_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
+function path_prompt() {
+  local truncate_home="${PWD/#$HOME/~}"
+  local truncate_goog="${truncate_home/\/google\/src\/cloud\/strahinja\//c:}"
+  echo $truncate_goog
+}
+
+PROMPT=$'%{$fg[yellow]%}$(path_prompt)%{$reset_color%} $(git_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
 %{$fg[red]%}$ %{$reset_color%}'
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
