@@ -15,25 +15,63 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?%{$reset_color%}"
 GIT_PROMPT_PREFIX="%{$fg[white]%}[%{$reset_color%}%{$fg[green]%}"
 GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "
 
+function in_hg() {
+  if [[ $PWD/ = /google/src/cloud/* ]]; then
+    echo 1
+    return
+  fi
+
+  # Very slow, we really don't want to execute this
+  if chg id > /dev/null 2>&1; then
+    echo 1
+  fi
+}
+
+function hg_get_commit_name() {
+  if [[ $(in_hg) ]]; then
+    echo $(chg cls -T '{name}' .)
+  fi
+}
+
+function in_git() {
+  if [[ $PWD/ = /google/src/cloud/* ]]; then
+    return
+  fi
+
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    echo 1
+  fi
+}
+
+function hg_prompt() {
+  echo "$GIT_PROMPT_PREFIX$(hg_get_commit_name)$GIT_PROMPT_SUFFIX"
+}
+
 function git_prompt() {
-  local info=$(git_prompt_info)
-  if [[ "x$info" != "x" ]]; then
-    local gstatus=$(git_prompt_status)
-    if [[ "x$gstatus" != "x" ]]; then
-      echo "$GIT_PROMPT_PREFIX$(git_prompt_info) $(git_prompt_status)$GIT_PROMPT_SUFFIX"
-    else
-      echo "$GIT_PROMPT_PREFIX$(git_prompt_info)$GIT_PROMPT_SUFFIX"
-    fi
+  local gstatus=$(git_prompt_status)
+  if [[ "x$gstatus" != "x" ]]; then
+    echo "$GIT_PROMPT_PREFIX$(git_prompt_info) $gstatus$GIT_PROMPT_SUFFIX"
+  else
+    echo "$GIT_PROMPT_PREFIX$(git_prompt_info)$GIT_PROMPT_SUFFIX"
+  fi
+}
+
+function vcs_prompt() {
+  if [[ $(in_hg) ]]; then
+    echo "$(hg_prompt)"
+  elif [[ $(in_git) ]]; then
+    echo "$(git_prompt)"
   fi
 }
 
 function path_prompt() {
   local truncate_home="${PWD/#$HOME/~}"
   local truncate_goog="${truncate_home/\/google\/src\/cloud\/strahinja\//c:}"
-  echo $truncate_goog
+  echo "$truncate_goog"
 }
 
-PROMPT=$'%{$fg[yellow]%}$(path_prompt)%{$reset_color%} $(git_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
+
+PROMPT=$'%{$fg[yellow]%}$(path_prompt)%{$reset_color%} $(vcs_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
 %{$fg[red]%}$ %{$reset_color%}'
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
