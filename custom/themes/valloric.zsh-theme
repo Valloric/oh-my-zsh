@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# To have the regex-replace function available.
+# NOTE: Function mutates the provided var!
+# See: https://www.refining-linux.org/archives/52-ZSH-Gem-18-Regexp-search-and-replace-on-parameters.html
+autoload -U regexp-replace
+
+# To enable PCRE syntax
+setopt re_match_pcre
+
 ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=""
@@ -67,6 +75,11 @@ function vcs_prompt() {
 function path_prompt() {
   local truncate_home="${PWD/#$HOME/~}"
   local truncate_goog="${truncate_home/\/google\/src\/cloud\/strahinja\//c:}"
+
+  # Insert color codes around the client name if it exists
+  # Must use a positive look-behind to avoid $MATCH having the "c:" prefix
+  regexp-replace truncate_goog '(?<=^c:)[^/]+' '%{$fg[cyan]%}$MATCH%{$fg[yellow]%}'
+
   echo "$truncate_goog"
 }
 
