@@ -24,7 +24,7 @@ GIT_PROMPT_PREFIX="%{$fg[white]%}[%{$reset_color%}%{$fg[green]%}"
 GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "
 
 function in_hg() {
-  if [[ $PWD/ = /google/src/cloud/* ]]; then
+  if [[ $PWD/ =~ '/google/src/cloud/strahinja/\w+' ]]; then
     echo 1
     return
   fi
