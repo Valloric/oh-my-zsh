@@ -1,4 +1,9 @@
-alias v="vagrant"
+alias v="vim"
+alias gv="gvim"
+alias n="nvim"
+alias gn="gnvim"
+
+alias va="vagrant"
 
 # Runs perl-as-sed on all the files ag finds; useful for global search & replace
 # e.g. to replace all occurences of "foo" with "bar": acksed 's/foo/bar/g'
