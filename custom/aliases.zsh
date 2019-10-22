@@ -9,8 +9,12 @@ alias va="vagrant"
 # e.g. to replace all occurences of "foo" with "bar": acksed 's/foo/bar/g'
 alias acksed="ag -g '' | tr '\n' '\0' | xargs -0 -n 1 perl -pi -E "
 
+# We now use this instead of acksed (above)
+alias fm='fastmod'
+
 # Searches for all the files whose names match the given regex in this dir and
 # all the subdirs
+# We use "fd" these days
 alias ackf="ack -a -g"
 
 # mercurial aliases
