@@ -27,5 +27,5 @@ alias ct="cargo test"
 alias cb="cargo build"
 alias cbr="cargo build --release"
 alias cf="cargo fmt"
-alias cc="cargo clippy"
+alias cc="cargo clippy --all-targets --all-features -- -D warnings"
 alias help="tldr" # requires: cargo install tealdeer
