@@ -2,6 +2,9 @@ alias v="vim"
 alias gv="gvim"
 alias n="nvim"
 alias gn="gnvim"
+alias c="code" 
+alias cn="code --new-window" 
+alias cr="code --reuse-window" 
 
 alias va="vagrant"
 
