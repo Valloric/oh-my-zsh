@@ -6,6 +6,8 @@ alias c="code"
 alias cn="code --new-window" 
 alias cr="code --reuse-window" 
 
+alias y="yarn" 
+
 alias va="vagrant"
 
 # Runs perl-as-sed on all the files ag finds; useful for global search & replace
