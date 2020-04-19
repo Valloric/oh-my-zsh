@@ -2,11 +2,11 @@ alias v="vim"
 alias gv="gvim"
 alias n="nvim"
 alias gn="gnvim"
-alias c="code" 
-alias cn="code --new-window" 
-alias cr="code --reuse-window" 
+alias c="code"
+alias cn="code --new-window"
+alias cr="code --reuse-window"
 
-alias y="yarn" 
+alias y="yarn"
 
 alias va="vagrant"
 
@@ -34,3 +34,11 @@ alias cbr="cargo build --release"
 alias cf="cargo fmt"
 alias cc="cargo clippy --all-targets --all-features -- -D warnings"
 alias help="tldr" # requires: cargo install tealdeer
+
+# rustc hacking
+alias xc="python3 ./x.py check"
+alias xt="python3 ./x.py test tidy"
+alias bs1="python3 ./x.py build --stage 1"
+alias bsk1="python3 ./x.py build --stage 1 --keep-stage 1"
+alias ts1="python3 ./x.py test --stage 1"
+alias tsk1="python3 ./x.py test --stage 1 --keep-stage 1"
