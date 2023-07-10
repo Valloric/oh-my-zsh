@@ -24,7 +24,8 @@ alias ackf="ack -a -g"
 
 # mercurial aliases
 # using chg, the C wrapper around hg for faster startup
-alias h="chg"
+#alias h="chg"
+alias h="hg"
 
 # rust cargo aliases
 alias ck="cargo check"

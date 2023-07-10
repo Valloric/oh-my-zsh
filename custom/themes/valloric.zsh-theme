@@ -23,21 +23,25 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?%{$reset_color%}"
 GIT_PROMPT_PREFIX="%{$fg[white]%}[%{$reset_color%}%{$fg[green]%}"
 GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "
 
+if [ -f /usr/share/scm/scm-prompt.sh ]; then
+  source /usr/share/scm/scm-prompt.sh
+fi
+
 function in_hg() {
-  if [[ $PWD/ =~ '/google/src/cloud/strahinja/\w+' ]]; then
+  if [[ $PWD/ =~ '/home/vmk/fbsource/\w+' ]]; then
     echo 1
     return
   fi
 
   # Very slow, we really don't want to execute this
-  if chg id > /dev/null 2>&1; then
+  if hg id > /dev/null 2>&1; then
     echo 1
   fi
 }
 
 function hg_get_commit_name() {
   if [[ $(in_hg) ]]; then
-    echo $(chg cls -T '{name}' .)
+    echo $(hg cls -T '{name}' .)
   fi
 }
 
@@ -52,7 +56,12 @@ function in_git() {
 }
 
 function hg_prompt() {
-  echo "$GIT_PROMPT_PREFIX$(hg_get_commit_name)$GIT_PROMPT_SUFFIX"
+  # if at corp, do corp things
+  if [ -f "$HOME/corp/zsh_corp.zsh" ]; then
+    echo "$GIT_PROMPT_PREFIX$(_scm_prompt)$GIT_PROMPT_SUFFIX" 
+  else
+    echo "$GIT_PROMPT_PREFIX$(hg_get_commit_name)$GIT_PROMPT_SUFFIX" 
+  fi
 }
 
 function git_prompt() {
