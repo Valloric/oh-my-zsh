@@ -6,6 +6,7 @@ alias c="code"
 alias cn="code --new-window"
 alias cr="code --reuse-window"
 
+alias j="just"
 alias y="yarn"
 
 alias va="vagrant"
