@@ -23,18 +23,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?%{$reset_color%}"
 GIT_PROMPT_PREFIX="%{$fg[white]%}[%{$reset_color%}%{$fg[green]%}"
 GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "
 
-if [ -f /usr/share/scm/scm-prompt.sh ]; then
-  source /usr/share/scm/scm-prompt.sh
-fi
-
 function in_hg() {
-  if [[ $PWD/ =~ '/home/vmk/fbsource/\w+' ]]; then
-    echo 1
-    return
-  fi
-
   # Very slow, we really don't want to execute this
-  if hg id > /dev/null 2>&1; then
+  if hg id >/dev/null 2>&1; then
     echo 1
   fi
 }
@@ -46,22 +37,13 @@ function hg_get_commit_name() {
 }
 
 function in_git() {
-  if [[ $PWD/ = /google/src/cloud/* ]]; then
-    return
-  fi
-
-  if git rev-parse --git-dir > /dev/null 2>&1; then
+  if git rev-parse --git-dir >/dev/null 2>&1; then
     echo 1
   fi
 }
 
 function hg_prompt() {
-  # if at corp, do corp things
-  if [ -f "$HOME/corp/zsh_corp.zsh" ]; then
-    echo "$GIT_PROMPT_PREFIX$(_scm_prompt)$GIT_PROMPT_SUFFIX" 
-  else
-    echo "$GIT_PROMPT_PREFIX$(hg_get_commit_name)$GIT_PROMPT_SUFFIX" 
-  fi
+  echo "$GIT_PROMPT_PREFIX$(hg_get_commit_name)$GIT_PROMPT_SUFFIX"
 }
 
 function git_prompt() {
@@ -83,15 +65,11 @@ function vcs_prompt() {
 
 function path_prompt() {
   local truncate_home="${PWD/#$HOME/~}"
-  local truncate_goog="${truncate_home/\/google\/src\/cloud\/strahinja\//c:}"
-
   # Insert color codes around the client name if it exists
   # Must use a positive look-behind to avoid $MATCH having the "c:" prefix
-  regexp-replace truncate_goog '(?<=^c:)[^/]+' '%{$fg[cyan]%}$MATCH%{$fg[yellow]%}'
-
-  echo "$truncate_goog"
+  regexp-replace truncate_home '(?<=^c:)[^/]+' '%{$fg[cyan]%}$MATCH%{$fg[yellow]%}'
+  echo "$truncate_home"
 }
-
 
 PROMPT=$'%{$fg[yellow]%}$(path_prompt)%{$reset_color%} $(vcs_prompt)%{$fg[magenta]%}%n@%m %{$reset_color%}%{$fg[cyan]%}%D{[%H:%M:%S]} %{$reset_color%}\
 %{$fg[red]%}$ %{$reset_color%}'
