@@ -28,6 +28,10 @@ alias ackf="ack -a -g"
 #alias h="chg"
 alias h="hg"
 
+# Using eza as a fancier ls. "ll" shows hidden files as well.
+alias l="eza -l"
+alias ll="eza -la"
+
 # rust cargo aliases
 alias ck="cargo check"
 alias ct="cargo test"
