@@ -1,6 +1,7 @@
 # VS Code
 
-This plugin makes interaction between the command line and the VS Code editor easier.
+This plugin provides useful aliases to simplify the interaction between the command line and VS Code or
+VSCodium editor.
 
 To start using it, add the `vscode` plugin to your `plugins` array in `~/.zshrc`:
 
@@ -10,23 +11,41 @@ plugins=(... vscode)
 
 ## Requirements
 
-To use VS Code in the terminal **in macOS**, first you need to install the `code` command in the PATH,
-otherwise you might receive this message: `zsh: command not found: code`.
+This plugin requires to have a flavour of VS Code installed and it's executable available in PATH.
 
-[As the docs say](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line), open
-the Command Palette via (F1 or ⇧⌘P) and type shell command to find the Shell Command:
-> Install 'code' command in PATH
+You can install either:
 
-## VS Code Insiders
+- VS Code (code)
+- VS Code Insiders (code-insiders)
+- VSCodium (codium)
 
-🍏 **If you are only using [VS Code Insiders](https://code.visualstudio.com/insiders/), the plugin will automatically bind to your Insiders installation.**
+### MacOS
 
-But, if you have both Stable and Insiders versions and want to configure the plugin to just use the Insiders version, add the following line in the oh-my-zsh settings section (between the `ZSH_THEME` and the `plugins=()` line). This will make the plugin use the Insiders version instead.
+While Linux installations will add the executable to PATH, MacOS users might still have to do this manually:
+
+[For VS Code and VS Code Insiders](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line),
+open the Command Palette via (F1 or ⇧⌘P) and type shell command to find the Shell Command:
+
+> Shell Command: Install 'code' command in PATH
+
+[For VSCodium](https://github.com/VSCodium/vscodium/blob/master/DOCS.md#how-do-i-open-vscodium-from-the-terminal),
+open the Command Palette via (F1 or ⇧⌘P) and type shell command to find the Shell Command:
+
+> Shell Command: Install 'codium' command in PATH
+
+## Using multiple flavours
+
+If for any reason, you ever require to use multiple flavours of VS Code i.e. VS Code (stable) and VS Code
+Insiders, you can manually specify the flavour's executable. Add the following line to the .zshrc file
+(between the `ZSH_THEME` and the `plugins=()` lines). This will make the plugin use your manually defined
+executable.
 
 ```zsh
 ZSH_THEME=...
 
-# Add this line to use code-insiders instead of code
+# Choose between one [code, code-insiders or codium]
+# The following line will make the plugin to open VS Code Insiders
+# Invalid entries will be ignored, no aliases will be added
 VSCODE=code-insiders
 
 plugins=(... vscode)
@@ -39,6 +58,7 @@ source $ZSH/oh-my-zsh.sh
 | Alias                   | Command                        | Description                                                                                                 |
 | ----------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | vsc                     | code .                         | Open the current folder in VS code                                                                          |
+| vsc `dir`               | code `dir`                     | Open passed folder in VS code                                                                               |
 | vsca `dir`              | code --add `dir`               | Add folder(s) to the last active window                                                                     |
 | vscd `file` `file`      | code --diff `file` `file`      | Compare two files with each other.                                                                          |
 | vscg `file:line[:char]` | code --goto `file:line[:char]` | Open a file at the path on the specified line and character position.                                       |
@@ -46,6 +66,7 @@ source $ZSH/oh-my-zsh.sh
 | vscr                    | code --reuse-window            | Force to open a file or folder in the last active window.                                                   |
 | vscw                    | code --wait                    | Wait for the files to be closed before returning.                                                           |
 | vscu `dir`              | code --user-data-dir `dir`     | Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code. |
+| vscp `profile`          | code --profile `profile`       | Specifies the profile to open Code with.                                                                    |
 
 ## Extensions aliases
 
