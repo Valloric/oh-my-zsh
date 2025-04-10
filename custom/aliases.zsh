@@ -29,8 +29,8 @@ alias ackf="ack -a -g"
 alias h="hg"
 
 # Using eza as a fancier ls. "ll" shows hidden files as well.
-alias l="eza -l"
-alias ll="eza -la"
+alias l="eza --icons=auto --group-directories-first -l"
+alias ll="eza --icons=auto --group-directories-first -la"
 
 # rust cargo aliases
 alias ck="cargo check"
