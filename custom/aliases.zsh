@@ -48,3 +48,9 @@ alias bs1="python3 ./x.py build --stage 1"
 alias bsk1="python3 ./x.py build --stage 1 --keep-stage 1"
 alias ts1="python3 ./x.py test --stage 1"
 alias tsk1="python3 ./x.py test --stage 1 --keep-stage 1"
+
+# Create bat->batcat alias only if batcat exists. On debian, `bat` is installed
+# as `batcat` due to a name conflict.
+if command -v batcat &> /dev/null; then
+  alias bat='batcat'
+fi
