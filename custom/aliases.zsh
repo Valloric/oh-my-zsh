@@ -32,6 +32,10 @@ alias h="hg"
 alias l="eza --icons=auto --group-directories-first -l"
 alias ll="eza --icons=auto --group-directories-first -la"
 
+# GLOBAL aliases, which work anywhere on the line. Must be surrounded by
+# whitespace and not be in quotes to be expanded.
+alias -g L='| less'
+
 # rust cargo aliases
 alias ck="cargo check"
 alias ct="cargo test"
