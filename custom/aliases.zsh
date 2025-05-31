@@ -38,6 +38,14 @@ alias ll="eza --icons=auto --group-directories-first --color=always -la | less"
 # whitespace and not be in quotes to be expanded.
 alias -g L='| less'
 
+# systemd aliases
+alias sc='systemctl'
+alias scu='systemctl --user'
+alias jc='journalctl --boot'
+alias jcs='journalctl --boot --pager-end --unit'
+alias jcu='journalctl --user --boot'
+alias jcus='journalctl --user --boot --pager-end --unit'
+
 # rust cargo aliases
 alias ck="cargo check"
 alias ct="cargo test"
