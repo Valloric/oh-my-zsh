@@ -29,8 +29,10 @@ alias ackf="ack -a -g"
 alias h="hg"
 
 # Using eza as a fancier ls. "ll" shows hidden files as well.
-alias l="eza --icons=auto --group-directories-first -l"
-alias ll="eza --icons=auto --group-directories-first -la"
+# Piping through less so that we get auto-paging when output doesn't fit on
+# screen (depends our $LESS env var config).
+alias l="eza --icons=auto --group-directories-first --color=always -l | less"
+alias ll="eza --icons=auto --group-directories-first --color=always -la | less"
 
 # GLOBAL aliases, which work anywhere on the line. Must be surrounded by
 # whitespace and not be in quotes to be expanded.
