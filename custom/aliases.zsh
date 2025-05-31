@@ -40,7 +40,9 @@ alias -g L='| less'
 
 # systemd aliases
 alias sc='systemctl'
+alias scr='systemctl daemon-reload'
 alias scu='systemctl --user'
+alias scur='systemctl --user daemon-reload'
 alias jc='journalctl --boot'
 alias jcs='journalctl --boot --pager-end --unit'
 alias jcu='journalctl --user --boot'
