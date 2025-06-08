@@ -75,3 +75,6 @@ else
   alias -g L='| less'
 fi
 
+# For looking at multiple files in one scrolling view with filenames between
+# them. Use like so: batn *.txt
+alias batn="bat --style=header,rule --decorations=always"
