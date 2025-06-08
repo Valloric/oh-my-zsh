@@ -32,10 +32,6 @@ alias h="hg"
 alias l="eza --icons=auto --group-directories-first -l"
 alias ll="eza --icons=auto --group-directories-first -la"
 
-# GLOBAL aliases, which work anywhere on the line. Must be surrounded by
-# whitespace and not be in quotes to be expanded.
-alias -g L='| less'
-
 # systemd aliases
 alias sc='systemctl'
 alias scr='systemctl daemon-reload'
@@ -68,3 +64,14 @@ alias tsk1="python3 ./x.py test --stage 1 --keep-stage 1"
 if command -v batcat &> /dev/null; then
   alias bat='batcat'
 fi
+
+# GLOBAL alias for "pipe to less", which works anywhere on the line. Must be
+# surrounded by whitespace and not be in quotes to be expanded.
+if command -v bat &> /dev/null; then
+  alias -g L='| bat'
+elif command -v batcat &> /dev/null; then
+  alias -g L='| batcat'
+else
+  alias -g L='| less'
+fi
+
