@@ -8,6 +8,7 @@ alias cr="code --reuse-window"
 
 alias j="just"
 alias y="yarn"
+alias p="podman"
 
 alias va="vagrant"
 
